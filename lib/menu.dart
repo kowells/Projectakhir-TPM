@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:grafimedia/views/home.dart';
-import 'package:grafimedia/views/kesanpesan.dart';
 import 'package:grafimedia/views/konversi.dart';
 import 'package:grafimedia/views/login_page.dart';
 import 'package:grafimedia/views/profile.dart';
@@ -99,22 +98,6 @@ class MainPage extends StatelessWidget {
                             ))
                       },
                   child: Text("Waktu")),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 30,
-              width: 200,
-              child: ElevatedButton(
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => KesanPesanPage(),
-                            ))
-                      },
-                  child: Text("Kesan Pesan")),
             ),
           ],
         ),

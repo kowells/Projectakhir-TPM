@@ -89,6 +89,16 @@ class Profiledetail extends StatelessWidget {
               'Teknologi Pemrograman Mobile IF - E',
               style: TextStyle(fontSize: 16),
             ),
+            SizedBox(height: 30),
+            Text(
+              'Kesan Pesan',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Asyik sekali belajar tpm mantab',
+              style: TextStyle(fontSize: 16),
+            ),
           ],
         ),
       ),

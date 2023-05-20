@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:grafimedia/data/shared_pref.dart';
 import 'package:grafimedia/views/book_search_view.dart';
 import 'package:grafimedia/views/home.dart';
-import 'package:grafimedia/menu_page.dart';
+import 'package:grafimedia/menu.dart';
+import 'package:grafimedia/views/registerpage.dart';
+import 'package:http/http.dart' as http;
+import 'package:grafimedia/menu.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,8 +18,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final username_controller = TextEditingController();
-  final password_controller = TextEditingController();
+  var Username_controller = TextEditingController();
+  var Password_controller = TextEditingController();
 
   @override
   void initState() {
@@ -28,8 +33,8 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (context) => MyHomePage(
-                      title: 'Anda Sudah Login',
+                builder: (context) => MainPage(
+                      title: '',
                     )));
       }
     });
@@ -48,11 +53,13 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               _createImage(),
               SizedBox(height: 32),
-              _formSection(username_controller, 'Username'),
+              _formSection(Username_controller, 'Username'),
               SizedBox(height: 16),
-              _formSection(password_controller, 'Password'),
+              _formSection(Password_controller, 'Password'),
               SizedBox(height: 24),
               _buttonSubmit(),
+              SizedBox(height: 30),
+              _buttonRegister()
             ],
           ),
         ),
@@ -66,9 +73,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _formSection(dynamic text_controller, String label) {
+  Widget _formSection(dynamic textController, String label) {
     return TextFormField(
-      controller: text_controller,
+      controller: textController,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: label,
@@ -76,9 +83,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _formSectionPass(dynamic text_controller, String label) {
+  Widget _formSectionPass(dynamic textController, String label) {
     return TextField(
-      controller: text_controller,
+      controller: textController,
       obscureText: true,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -97,17 +104,68 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget _buttonRegister() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => RegisterPage()));
+        },
+        child: Text("Register"),
+      ),
+    );
+  }
+
   void _loginProcess() {
-    String username = username_controller.text;
-    String password = password_controller.text;
-    if (username.isNotEmpty || password.isNotEmpty) {
+    String username = Username_controller.text;
+    String password = Password_controller.text;
+    if (Username_controller.text != "" && Password_controller.text != "") {
       SharedPref().setLogin(username);
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MainPage(
-                    title: ' ',
-                  )));
+      _onLogin();
+    } else {
+      SnackBar snackBar = SnackBar(
+        content: Text("Tidak Boleh Ada Yang Kosong"),
+        backgroundColor: Colors.redAccent,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
+
+  void _onLogin() async {
+    final response = await http.post(
+        Uri.parse("http://192.168.1.21/login_books/users/login.php"),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",
+          "Access-Control-Allow-Headers": "Access-Control-Allow-Origin, Accept"
+        },
+        body: {
+          "uname": Username_controller.text,
+          "pass": Password_controller.text
+        });
+    final data = jsonDecode(response.body);
+    int value = data['value'];
+    String pesan = data['message'];
+    String uname = data['uname'];
+    String pass = data['pass'];
+    print(Username_controller.text);
+
+    if (value == 1) {
+      setState(() {
+        _checkLoginStatus();
+      });
+      SnackBar snackBar = SnackBar(
+        content: Text(pesan),
+        backgroundColor: Colors.greenAccent,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      SnackBar snackBar = SnackBar(
+        content: Text(pesan),
+        backgroundColor: Colors.redAccent,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 }
