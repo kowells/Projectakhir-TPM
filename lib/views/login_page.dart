@@ -3,12 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:grafimedia/data/shared_pref.dart';
-import 'package:grafimedia/views/book_search_view.dart';
-import 'package:grafimedia/views/home.dart';
-import 'package:grafimedia/menu.dart';
+import 'package:grafimedia/views/home_buku.dart';
 import 'package:grafimedia/views/registerpage.dart';
 import 'package:http/http.dart' as http;
-import 'package:grafimedia/menu.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -33,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (context) => MainPage(
+                builder: (context) => MyHomePage(
                       title: '',
                     )));
       }
@@ -69,6 +67,8 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _createImage() {
     return Container(
+      width: 200, // Ukuran lebar gambar
+      height: 200, // Ukuran tinggi gambar
       child: Image.asset('assets/images/logo-TPM.png'),
     );
   }
@@ -132,9 +132,10 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+
   void _onLogin() async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.21/login_books/users/login.php"),
+        Uri.parse("http://192.168.1.6/login_books/users/login.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",

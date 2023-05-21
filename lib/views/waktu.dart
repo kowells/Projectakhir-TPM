@@ -35,6 +35,8 @@ class _WaktuState extends State<Waktu> {
       return 8;
     } else if (_zone == "WIT") {
       return 9;
+    } else if (_zone == "UTC") {
+      return 1;
     } else {
       return 0;
     }
@@ -110,6 +112,19 @@ class _WaktuState extends State<Waktu> {
                   onPressed: () {
                     setState(() {
                       _zone = 'WIT';
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, // warna latar belakang button
+                    onPrimary: Colors.white, // warna teks pada button
+                  ),
+                ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  child: Text('UTC'),
+                  onPressed: () {
+                    setState(() {
+                      _zone = 'UTC';
                     });
                   },
                   style: ElevatedButton.styleFrom(

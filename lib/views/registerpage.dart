@@ -33,11 +33,11 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               children: [
                 const Text(
-                  "Register",
+                  "REGISTER",
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 30,
                     fontWeight: FontWeight.w900,
-                    color: Colors.teal,
+                    color: Colors.deepPurple,
                   ),
                 ),
                 const SizedBox(
@@ -129,9 +129,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    gradient: const LinearGradient(
-                        colors: [Colors.orange, Colors.red]),
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.deepPurple
                   ),
                   child: MaterialButton(
                     onPressed: () {
@@ -202,7 +201,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _onRegister() async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.21/login_books/users/register.php"),
+        Uri.parse("http://192.168.1.6/login_books/users/register.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",

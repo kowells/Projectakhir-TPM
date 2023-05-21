@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
 class KonversiPage extends StatefulWidget {
   const KonversiPage({super.key});
@@ -34,9 +33,36 @@ class _KonversiPageState extends State<KonversiPage> {
         temp = double.parse(_jumlah) / 14200;
         _result = temp.toStringAsFixed(4);
       });
+    } else if (choose1 == "IDR" && choose2 == "EUR") {
+      setState(() {
+        temp = double.parse(_jumlah) / 17000;
+        _result = temp.toStringAsFixed(4);
+      });
     } else if (choose1 == "USD" && choose2 == "IDR") {
       setState(() {
         temp = double.parse(_jumlah) * 14200;
+        _result = temp.toStringAsFixed(4);
+      });
+    } else if (choose1 == "USD" && choose2 == "EUR") {
+      setState(() {
+        temp = double.parse(_jumlah) * 0.85;
+        _result = temp.toStringAsFixed(4);
+      });
+    } else if (choose1 == "EUR" && choose2 == "IDR") {
+      setState(() {
+        temp = double.parse(_jumlah) * 17000;
+        _result = temp.toStringAsFixed(4);
+      });
+
+    } else if (choose1 == "EUR" && choose2 == "USD") {
+      setState(() {
+        temp = double.parse(_jumlah) * 1.17;
+
+        _result = temp.toStringAsFixed(4);
+      });
+    } else if (choose1 == "EUR" && choose2 == "EUR") {
+      setState(() {
+        temp = double.parse(_jumlah);
         _result = temp.toStringAsFixed(4);
       });
     } else if (choose1 == "USD" && choose2 == "USD") {
@@ -98,7 +124,7 @@ class _KonversiPageState extends State<KonversiPage> {
               DropdownButton<String>(
                   dropdownColor: Color.fromARGB(255, 255, 255, 255),
                   value: choose1,
-                  items: <String>['IDR', 'USD'].map((String value) {
+                  items: <String>['IDR', 'USD', 'EUR'].map((String value) {
                     return DropdownMenuItem(
                         value: value,
                         child: Text(
@@ -114,7 +140,7 @@ class _KonversiPageState extends State<KonversiPage> {
               DropdownButton<String>(
                   dropdownColor: Color.fromARGB(255, 255, 255, 255),
                   value: choose2,
-                  items: <String>['IDR', 'USD'].map((String value) {
+                  items: <String>['IDR', 'USD', 'EUR'].map((String value) {
                     return DropdownMenuItem(
                         value: value,
                         child: Text(

@@ -1,3 +1,7 @@
+import 'dart:js';
+
+import 'package:flutter/material.dart';
+import 'package:grafimedia/views/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
@@ -10,9 +14,17 @@ class SharedPref {
   }
 
   void setLogout() async {
+
     SharedPreferences getPref = await _pref;
     getPref.setBool('isLogin', false);
     getPref.remove('username');
+    Navigator.pushAndRemoveUntil(
+      context as BuildContext,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const LoginPage(),
+      ),
+          (route) => false,
+    );
   }
 
   Future<String> getUsername() async {
