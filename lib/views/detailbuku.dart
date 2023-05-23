@@ -30,6 +30,12 @@ class _DetailPageState extends State<DetailPage> {
     }
   }
 
+  String removeAllHtmlTags(String htmlText) {
+    RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+
+    return htmlText.replaceAll(exp, '');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,14 +54,15 @@ class _DetailPageState extends State<DetailPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (book['volumeInfo']['imageLinks'] != null)
+                    if (book['volumeInfo']['imageLinks']?['thumbnail'] != null)
                       Image.network(
                         book['volumeInfo']['imageLinks']['thumbnail'],
                         height: 200,
                       ),
                     SizedBox(height: 16),
                     Text(
-                      book['volumeInfo']['title'],
+                      book['volumeInfo']?['title'] ?? '',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -63,12 +70,15 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Authors: ${book['volumeInfo']['authors'].join(', ')}',
+                      'Authors: ${book['volumeInfo']?['authors']?.join(', ') ?? ''}',
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Description: ${book['volumeInfo']['description']}',
+                      'Description: ' +
+                          removeAllHtmlTags(
+                              book['volumeInfo']?['description'] ?? ''),
+                      textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(height: 8),

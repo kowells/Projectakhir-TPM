@@ -53,7 +53,6 @@ class _KonversiPageState extends State<KonversiPage> {
         temp = double.parse(_jumlah) * 17000;
         _result = temp.toStringAsFixed(4);
       });
-
     } else if (choose1 == "EUR" && choose2 == "USD") {
       setState(() {
         temp = double.parse(_jumlah) * 1.17;
@@ -174,7 +173,7 @@ class _KonversiPageState extends State<KonversiPage> {
           ),
           Text(
             _result,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)),
           )
         ]),
       )),

@@ -7,7 +7,6 @@ import 'package:grafimedia/views/home_buku.dart';
 import 'package:grafimedia/views/registerpage.dart';
 import 'package:http/http.dart' as http;
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -132,10 +131,9 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-
   void _onLogin() async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.6/login_books/users/login.php"),
+        Uri.parse("http://192.168.0.154/login_books/users/login.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",

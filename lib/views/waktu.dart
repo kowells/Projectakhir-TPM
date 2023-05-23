@@ -10,21 +10,19 @@ class Waktu extends StatefulWidget {
 class _WaktuState extends State<Waktu> {
   DateTime _selectedDate = DateTime.now();
   String _zone = 'WIB';
-  late Timer _timer;
-  late String _timeString;
+  String _timeString = '';
 
   @override
   void initState() {
     super.initState();
-    _timer =
-        Timer.periodic(Duration(milliseconds: 100), (Timer t) => _getTime());
+    Timer.periodic(Duration(milliseconds: 10), (Timer t) => _getTime());
   }
 
   void _getTime() {
     final DateTime now =
         DateTime.now().toUtc().add(Duration(hours: _getHourOffset()));
     setState(() {
-      _timeString = DateFormat('HH:mm:ss').format(now);
+      _timeString = '${DateFormat('HH:mm:ss').format(now)} $_zone';
     });
   }
 

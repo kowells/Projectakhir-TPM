@@ -129,9 +129,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.deepPurple
-                  ),
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.deepPurple),
                   child: MaterialButton(
                     onPressed: () {
                       print(Username.text);
@@ -201,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _onRegister() async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.6/login_books/users/register.php"),
+        Uri.parse("http://192.168.0.154/login_books/users/register.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",
