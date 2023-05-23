@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 
 class Waktu extends StatefulWidget {
@@ -7,22 +8,32 @@ class Waktu extends StatefulWidget {
   _WaktuState createState() => _WaktuState();
 }
 
-class _WaktuState extends State<Waktu> {
+class _WaktuState extends State<Waktu> with TickerProviderStateMixin {
   DateTime _selectedDate = DateTime.now();
   String _zone = 'WIB';
   String _timeString = '';
 
+  Ticker? _ticker;
+
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(milliseconds: 10), (Timer t) => _getTime());
+    _ticker = createTicker((duration) => _getTime());
+    _ticker?.start();
+  }
+
+  @override
+  void dispose() {
+    _ticker?.dispose();
+    super.dispose();
   }
 
   void _getTime() {
     final DateTime now =
         DateTime.now().toUtc().add(Duration(hours: _getHourOffset()));
+    final String timeFormat = DateFormat('HH:mm:ss').format(now);
     setState(() {
-      _timeString = '${DateFormat('HH:mm:ss').format(now)} $_zone';
+      _timeString = '$timeFormat $_zone';
     });
   }
 
