@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grafimedia/views/konversi.dart';
-import 'package:grafimedia/views/menu_buku.dart';
+import 'package:grafimedia/views/sample_buku.dart';
 import 'package:grafimedia/views/profile_users.dart';
 import 'package:grafimedia/views/waktu.dart';
 
@@ -22,7 +22,6 @@ class _MyHomePageState extends State<MyHomePage> {
     HomePage(),
     KonversiPage(),
     Waktu()
-
   ];
 
   void onTabTapped(int index) {
@@ -57,7 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.timelapse),
             label: 'Waktu',
           ),
-
         ],
       ),
     );

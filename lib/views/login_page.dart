@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:grafimedia/data/shared_pref.dart';
-import 'package:grafimedia/views/home_buku.dart';
+import 'package:grafimedia/views/home_navigationbar.dart';
 import 'package:grafimedia/views/registerpage.dart';
 import 'package:http/http.dart' as http;
 
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _loginProcess() {
     String username = Username_controller.text;
-    String password = Password_controller.text;
+
     if (Username_controller.text != "" && Password_controller.text != "") {
       SharedPref().setLogin(username);
       _onLogin();
@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onLogin() async {
     final response = await http.post(
-        Uri.parse("http://192.168.0.154/login_books/users/login.php"),
+        Uri.parse("http://192.168.1.6/login_books/users/login.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",

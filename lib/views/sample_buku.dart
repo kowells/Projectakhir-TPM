@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<List<dynamic>> fetchBooks() async {
     final response = await http.get(
-        Uri.parse('https://www.googleapis.com/books/v1/volumes?q=raditya'));
+        Uri.parse('https://www.googleapis.com/books/v1/volumes?q=flutter'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       return data['items'];
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                         selectionHeightStyle: BoxHeightStyle.max,
                         style: GoogleFonts.nunitoSans(
                             textStyle:
-                            TextStyle(color: Colors.black, fontSize: 15)),
+                                TextStyle(color: Colors.black, fontSize: 15)),
                         decoration: InputDecoration(
                           hintStyle: GoogleFonts.nunitoSans(
                               color: Colors.black, fontSize: 15.0),
@@ -102,15 +102,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   padding: EdgeInsets.all(1),
-                  color: Colors.black26,
                   child: Container(
-                    color: Colors.white,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                        elevation: 10,
+                        padding: EdgeInsets.all(10),
+                        primary: Color.fromARGB(255, 103, 58, 183),
+                        elevation: 7,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              20), // Ubah angka radius sesuai keinginan
+                        ),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -125,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                         style: GoogleFonts.nunitoSans(
                           textStyle: TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20.0,
                           ),
                         ),
@@ -159,7 +160,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailPage(bookId: book['id']),
+                              builder: (context) =>
+                                  DetailPage(bookId: book['id']),
                             ),
                           );
                         },
@@ -171,7 +173,8 @@ class _HomePageState extends State<HomePage> {
                               Expanded(
                                 child: book['volumeInfo']['imageLinks'] != null
                                     ? Image.network(
-                                        book['volumeInfo']['imageLinks']['thumbnail'],
+                                        book['volumeInfo']['imageLinks']
+                                            ['thumbnail'],
                                         fit: BoxFit.cover,
                                       )
                                     : Container(

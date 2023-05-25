@@ -159,7 +159,7 @@ class _KonversiPageState extends State<KonversiPage> {
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 45, 98, 73),
+                  primary: Color.fromARGB(255, 103, 58, 183),
                   padding: EdgeInsets.symmetric(horizontal: 100)),
               onPressed: () {
                 print(choose1);
