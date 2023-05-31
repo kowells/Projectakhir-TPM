@@ -80,6 +80,7 @@ class _KonversiPageState extends State<KonversiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.yellow,
       appBar: AppBar(
         title: Text('Konversi Mata Uang'),
         actions: <Widget>[],
@@ -159,7 +160,6 @@ class _KonversiPageState extends State<KonversiPage> {
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 103, 58, 183),
                   padding: EdgeInsets.symmetric(horizontal: 100)),
               onPressed: () {
                 print(choose1);

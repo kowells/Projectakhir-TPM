@@ -98,8 +98,7 @@ class _WaktuState extends State<Waktu> with TickerProviderStateMixin {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // warna latar belakang button
-                    onPrimary: Colors.white, // warna teks pada button
+                    onPrimary: Colors.white,
                   ),
                 ),
                 SizedBox(width: 16),
@@ -111,8 +110,7 @@ class _WaktuState extends State<Waktu> with TickerProviderStateMixin {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // warna latar belakang button
-                    onPrimary: Colors.white, // warna teks pada button
+                    onPrimary: Colors.white,
                   ),
                 ),
                 SizedBox(width: 16),
@@ -124,8 +122,7 @@ class _WaktuState extends State<Waktu> with TickerProviderStateMixin {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // warna latar belakang button
-                    onPrimary: Colors.white, // warna teks pada button
+                    onPrimary: Colors.white,
                   ),
                 ),
                 SizedBox(width: 16),
@@ -137,8 +134,7 @@ class _WaktuState extends State<Waktu> with TickerProviderStateMixin {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // warna latar belakang button
-                    onPrimary: Colors.white, // warna teks pada button
+                    onPrimary: Colors.white,
                   ),
                 ),
               ],

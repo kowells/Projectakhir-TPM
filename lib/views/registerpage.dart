@@ -200,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _onRegister() async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.6/login_books/users/register.php"),
+        Uri.parse("http://192.168.1.7/login_books/users/register.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",

@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _showPassword = false;
   var Username_controller = TextEditingController();
   var Password_controller = TextEditingController();
 
@@ -52,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 32),
               _formSection(Username_controller, 'Username'),
               SizedBox(height: 16),
-              _formSection(Password_controller, 'Password'),
+              _formSectionPass(Password_controller, 'Password'),
               SizedBox(height: 24),
               _buttonSubmit(),
               SizedBox(height: 30),
@@ -85,9 +86,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget _formSectionPass(dynamic textController, String label) {
     return TextField(
       controller: textController,
-      obscureText: true,
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: !_showPassword,
       decoration: InputDecoration(
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+        border: OutlineInputBorder(),
         labelText: label,
       ),
     );
@@ -133,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onLogin() async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.6/login_books/users/login.php"),
+        Uri.parse("http://192.168.1.7/login_books/users/login.php"),
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",

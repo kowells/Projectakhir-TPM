@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.red,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(10),
-                        primary: Color.fromARGB(255, 103, 58, 183),
+                        //primary: Color.fromARGB(255, 103, 58, 183),
                         elevation: 7,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
